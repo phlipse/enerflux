@@ -1,0 +1,14 @@
+[Unit]
+Description=Retrieve data from fresh energy API and write to influxdb
+After=network.target
+
+[Service]
+Type=simple
+KillSignal=SIGINT
+Restart=on-failure
+User=enerflux
+WorkingDirectory=/home/enerflux
+ExecStart=/usr/local/bin/enerflux -j freshenergyuser -k Password42 -c 471181 -i 10 -u "foo@bar.de" -p Password42 -l coruscant -z
+
+[Install]
+WantedBy=multi-user.target
